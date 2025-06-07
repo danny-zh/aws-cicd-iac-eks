@@ -1,6 +1,6 @@
 [
   {
-    "name": "hello-world",
+    "name": "webserver",
     "imageUri": "730335280948.dkr.ecr.us-east-1.amazonaws.com/cmtr-9be1831a"
   }
 ]
