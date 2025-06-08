@@ -1,25 +1,11 @@
 version: 0.2
 
 phases:
-  pre_build:
-    commands:
-      - echo "Restoring cached Terraform data if available..."
-      - mkdir -p .terraform
-
   build:
     commands:
       - cd infra
-      - terraform init
-      - echo "Planning Terraform actions..."
-      - echo "Initializing Terraform..."
       - terraform plan -out=tfplan
 
   post_build:
     commands:
-      - echo "Build completed. Caching .terraform* and tfplan"
-
-cache:
-  paths:
-    - .terraform/**/*         # Terraform providers/modules
-    - .terraform.lock.hcl     # Lock file
-    
+      - echo "Deploy completed"
