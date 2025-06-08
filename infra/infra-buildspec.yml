@@ -28,4 +28,4 @@ cache:
 
 artifacts:
   files:
-    - plan/tfplan
+    - **/*
