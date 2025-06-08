@@ -3,7 +3,7 @@ version: 0.2
 phases:
   build:
     commands:
-      - cd infra
+      - terraform init -no-color
       - terraform plan -out=tfplan
 
   post_build:

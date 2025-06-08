@@ -18,14 +18,15 @@ phases:
 
   post_build:
     commands:
-      - echo "Build completed. Caching .terraform* and tfplan"
+      - echo "Build completed. Caching .terraform*"
 
 cache:
   paths:
     - .terraform/**/*         # Terraform providers/modules
     - .terraform.lock.hcl     # Lock file
-    - tfplan                  # Terraform plan file
 
 artifacts:
   files:
-    - '**/*'
+    - tfplan
+  base-directory: infra
+  discard-paths: yes

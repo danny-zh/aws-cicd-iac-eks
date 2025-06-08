@@ -15,7 +15,7 @@ resource "aws_s3_bucket" "example" {
   bucket = "my-new-tf-test-bucket-${random_string.id.result}"
 
   tags = {
-    Name        = "My bucket"
-    Environment = "Dev"
+    Name        = "Mybuckettest"
+    Environment = "Dev2"
   }
 }
