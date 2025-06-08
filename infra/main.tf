@@ -12,7 +12,7 @@ resource "random_string" "id" {
 
 # Test with s3 bucket
 resource "aws_s3_bucket" "example" {
-  bucket = "my-tf-test-bucket-${random_string.id.result}"
+  bucket = "my-new-tf-test-bucket-${random_string.id.result}"
 
   tags = {
     Name        = "My bucket"

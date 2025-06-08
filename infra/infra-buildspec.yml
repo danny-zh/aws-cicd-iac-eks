@@ -11,15 +11,21 @@ phases:
       - cd infra
       - echo "Initializing Terraform..."
       - terraform init
+      - echo "Validating Terraform code..."
       - terraform validate
+      - echo "Planning Terraform actions..."
       - terraform plan -out=tfplan
 
   post_build:
     commands:
-      - echo "Build completed. Caching .terraform/"
+      - echo "Build completed. Caching .terraform* and tfplan"
 
 cache:
   paths:
     - .terraform/**/*         # Terraform providers/modules
     - .terraform.lock.hcl     # Lock file
-  type: s3
+    - tfplan                  # Terraform plan file
+
+artifacts:
+  files:
+    - plan/tfplan
