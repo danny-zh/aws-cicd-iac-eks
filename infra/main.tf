@@ -4,7 +4,7 @@ data "aws_availability_zones" "available" {
 }
 
 resource "random_string" "id" {
-  length  = 4
+  length  = 5
   special = false
   upper = false
   numeric = false
