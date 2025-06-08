@@ -4,7 +4,11 @@ phases:
   build:
     commands:
       - echo "Deploying to AWS"
+<<<<<<< HEAD
       - cd infra
+=======
+      - cd terraform
+>>>>>>> 3af1cab0dfde23511235221488f33b10b7656856
       - terraform init -no-color
       - terraform apply tfplan -auto-approve
 
