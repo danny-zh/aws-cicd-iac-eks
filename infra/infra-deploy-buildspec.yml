@@ -3,8 +3,10 @@ version: 0.2
 phases:
   build:
     commands:
+      - echo "Deploying to AWS"
+      - cd terraform
       - terraform init -no-color
-      - terraform plan -out=tfplan
+      - terraform apply tfplan -auto-approve
 
   post_build:
     commands:

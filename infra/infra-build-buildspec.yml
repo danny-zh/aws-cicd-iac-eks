@@ -1,16 +1,12 @@
 version: 0.2
 
 phases:
-  pre_build:
-    commands:
-      - echo "Restoring cached Terraform data if available..."
-      - mkdir -p .terraform
 
   build:
     commands:
       - cd infra
       - echo "Initializing Terraform..."
-      - terraform init
+      - terraform init -no-color
       - echo "Validating Terraform code..."
       - terraform validate
       - echo "Planning Terraform actions..."
@@ -18,9 +14,8 @@ phases:
 
   post_build:
     commands:
-      - echo "Build completed. Caching .terraform*"
+      - echo "Build completed"
 
 artifacts:
   files:
     - infra/*
-  discard-paths: yes
