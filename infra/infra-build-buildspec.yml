@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+
+  build:
+    commands:
+      - cd infra
+      - echo "Initializing Terraform..."
+      - terraform init -no-color
+      - echo "Validating Terraform code..."
+      - terraform validate
+      - echo "Planning Terraform actions..."
+      - terraform plan -out=tfplan
+
+  post_build:
+    commands:
+      - echo "Build completed"
+
+artifacts:
+  files:
+    - infra/*
