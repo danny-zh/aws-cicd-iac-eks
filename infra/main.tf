@@ -3,10 +3,17 @@ data "aws_availability_zones" "available" {
   state = "available"
 }
 
+locals {
+  tags = {
+    created-by = "dherrra@site.me"
+    env        = var.cluster_name
+  }
+}
+
 resource "random_string" "id" {
   length  = 5
   special = false
-  upper = false
+  upper   = false
   numeric = false
 }
 
