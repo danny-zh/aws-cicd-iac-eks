@@ -1,0 +1,68 @@
+# Headless service
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-service
+  labels:
+    app: db-service
+spec:
+  ports:
+  - port: 5432
+    name: db
+  clusterIP: None
+  selector:
+    app: db
+---
+# Statefulset definition
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: db
+spec:
+  selector:
+    matchLabels:
+      app: db # has to match .spec.template.metadata.labels
+  serviceName: db-service
+  replicas: 3 # by default is 1
+  minReadySeconds: 10 # by default is 0
+  template:
+    metadata:
+      labels:
+        app: db # has to match .spec.selector.matchLabels
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: db
+        image: postgres:17
+        ports:
+        - containerPort: 5432
+          name: web
+        resources:
+          limits:
+            memory: 512Mi
+          requests:
+            cpu: 250m
+            memory: 512Mi
+        env:
+          - name: PGDATA
+            value: /var/lib/postgresql/data/pgdata 
+
+          - name: POSTGRES_USER
+            valueFrom:
+              configMapKeyRef:
+                name: backend-configmap          
+                key: POSTGRES_USER
+            
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: backend-configmap          
+                key: POSTGRES_PASSWORD
+                       
+          - name: POSTGRES_DB
+            valueFrom:
+              configMapKeyRef:
+                name: backend-configmap          
+                key: POSTGRES_DB
+ 
+      
