@@ -56,17 +56,17 @@ variable "aws_instance_type" {
 # }
 
 # tflint-ignore: terraform_unused_declarations
-variable "eks_cluster_version" {
-  description = "EKS cluster version"
-  type        = string
-}
+# variable "eks_cluster_version" {
+#   description = "EKS cluster version"
+#   type        = string
+# }
 
 
-# # tflint-ignore: terraform_unused_declarations
-variable "addon_context" {
-  description = "Addon context that can be passed directly to blueprints addon modules"
-  type        = any
-}
+# # # tflint-ignore: terraform_unused_declarations
+# variable "addon_context" {
+#   description = "Addon context that can be passed directly to blueprints addon modules"
+#   type        = any
+# }
 
 # tflint-ignore: terraform_unused_declarations
 # variable "tags" {
