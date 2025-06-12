@@ -9,11 +9,11 @@ phases:
 
   build:
     commands:
-      - echo "Building image in $(pwd)"
-      - docker build -t ${IMAGE_NAME}:{TAG} .
+      - echo "Building image in $(pwd && ls)"
+      - docker build -t ${IMAGE_NAME}:${TAG} .
       - echo "Images built succesfully"
       - echo "Tagging image succesfully"
-      - docker tag ${IMAGE_NAME}:{TAG} ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${IMAGE_NAME}:${TAG}
+      - docker tag ${IMAGE_NAME}:${TAG} ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${IMAGE_NAME}:${TAG}
       - echo "Image tagged succesfully"
     
   post_build:
