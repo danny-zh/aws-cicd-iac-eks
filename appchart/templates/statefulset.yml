@@ -2,13 +2,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: db-service
+  name: {{ .Values.db_service.name }}
+  namespace: {{ .Values.namespace.name }}
   labels:
-    app: db-service
+    app: {{ .Values.db_service.label }}
 spec:
   ports:
-  - port: 5432
-    name: db
+  - port: {{ .Values.sts.container.port }}
+    name: {{ .Values.sts.container.name }}
   clusterIP: None
   selector:
     app: db
@@ -17,13 +18,16 @@ spec:
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: db
+  name: {{ .Values.sts.name }}
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    app: {{ .Values.sts.label }}
 spec:
   selector:
     matchLabels:
       app: db # has to match .spec.template.metadata.labels
-  serviceName: db-service
-  replicas: 3 # by default is 1
+  serviceName: {{ .Values.db_service.name }}
+  replicas: {{ .Values.sts.replicas }} # by default is 1
   minReadySeconds: 10 # by default is 0
   template:
     metadata:
@@ -32,33 +36,29 @@ spec:
     spec:
       terminationGracePeriodSeconds: 10
       containers:
-      - name: db
+      - name: {{ .Values.sts.container.name }}
         image: postgres:17
         ports:
-        - containerPort: 5432
-          name: web
+        - containerPort: {{ .Values.sts.container.port }}
         resources:
           limits:
-            memory: 512Mi
+            memory: {{ .Values.sts.container.limits.memory }}
           requests:
-            cpu: 250m
-            memory: 512Mi
+            cpu: {{ .Values.sts.container.limits.cpu }}
+            memory: {{ .Values.sts.container.limits.memory }}
         env:
           - name: PGDATA
             value: /var/lib/postgresql/data/pgdata 
-
           - name: POSTGRES_USER
             valueFrom:
               configMapKeyRef:
                 name: backend-configmap          
                 key: POSTGRES_USER
-            
           - name: POSTGRES_PASSWORD
             valueFrom:
               configMapKeyRef:
                 name: backend-configmap          
                 key: POSTGRES_PASSWORD
-                       
           - name: POSTGRES_DB
             valueFrom:
               configMapKeyRef:

@@ -1,0 +1,43 @@
+### Variables for namespace.yml
+namespace:
+  name: app
+
+#### Variables for service.yaml
+service:
+  name: app-svc
+  port: 8000
+  targetport: 8000
+  labels:
+    app: backend
+
+#### Variables for deployment.yaml
+deployment:
+  name: app-deployment
+  replicas: 3
+  container:
+    name: backend
+    port: 8000
+  image:
+    pullPolicy: IfNotPresent
+    name: app/backend
+    tag: 1
+  labels:
+    app: backend
+  pod:
+    label: app-backend
+  
+#### Variables for deployment.yaml
+sts:
+  label: app-sts
+  name: app-db
+  replicas: 1
+  container:
+    name: db
+    port: 5432
+    limits:
+      cpu: 250m
+      memory: 512Mi
+
+db_service:
+  name: db-service
+  label: db-service
