@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.name }}
+  namespace: {{ .Values.namespace.name }}
+  labels: 
+    app: {{ .Values.deployment.label }}
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.deployment.pod.label }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.deployment.pod.label }}
+    spec:
+      initContainers:
+        - name: prepare-db
+          image: "{{ .Values.deployment.account_id }}.dkr.ecr.us-east-1.amazonaws.com/{{ .Values.deployment.image.name }}:{{ .Values.deployment.image.tag }}"
+          command: ['/bin/bash']
+          args:
+            - -c
+            - >- 
+              until [ $(timeout 2 bash -c "</dev/tcp/$POSTGRES_SERVER.{{ .Values.namespace.name }}.svc.cluster.local/$POSTGRES_PORT" ; echo $?) -eq 0 ]; 
+              do echo "Waiting for $POSTGRES_SERVER to be ready"; sleep 2; done &&
+              bash scripts/prestart.sh
+          envFrom:
+          - configMapRef:
+              name: backend-configmap
+      imagePullSecrets:
+        - name: my-secret
+      containers:
+      - name: {{ .Values.deployment.container.name }}
+        image: "{{ .Values.deployment.account_id }}.dkr.ecr.us-east-1.amazonaws.com/{{ .Values.deployment.image.name }}:{{ .Values.deployment.image.tag }}"
+        resources:
+          limits:
+            memory: 500Mi
+          requests:
+            cpu: 250m
+            memory: 500Mi
+        ports:
+        - containerPort: {{ .Values.deployment.container.port }}
+        envFrom:
+        - configMapRef:
+            name: backend-configmap
+        livenessProbe:
+          httpGet:
+            path: /api/v1/utils/health-check/
+            port: {{ .Values.deployment.container.port }}
+          initialDelaySeconds: 3
+          periodSeconds: 3
+      

@@ -240,3 +240,5 @@ pip-selfcheck.json
 # Custom exludes
 
 .terraform.lock*
+
+secret_token_docker.yml
