@@ -241,4 +241,4 @@ pip-selfcheck.json
 
 .terraform.lock*
 
-secret_token_docker.yml
+secret_data.yml
