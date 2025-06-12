@@ -9,6 +9,7 @@ phases:
 
   build:
     commands:
+      - cd app/backend
       - echo "Building image in $(pwd && ls)"
       - docker build -t ${IMAGE_NAME}:${TAG} .
       - echo "Images built succesfully"
