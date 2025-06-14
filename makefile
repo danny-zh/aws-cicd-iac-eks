@@ -13,3 +13,6 @@ helm-upgrade:
 helm-uninstall:
 	@echo "uninstalling helm application: ${app_name}"
 	helm uninstall ${app_name}
+
+eks-update:
+	aws eks update-kubeconfig --name scrumptious-indie-hideout --region us-east-1
