@@ -1,8 +1,10 @@
 .PHONY: helm-install helm-upgrade helm-uninstall
 
-app_name="app"
+app_name="app2"
 chart_name="appchart"
 secret_file="secret_data.yml"
+cluster-name="YOUR_CLUSTER_NAME"
+
 
 helm-install:
 	helm install ${app_name} ${chart_name} -f ${secret_file} 
@@ -15,4 +17,4 @@ helm-uninstall:
 	helm uninstall ${app_name}
 
 eks-update:
-	aws eks update-kubeconfig --name scrumptious-indie-hideout --region us-east-1
+	aws eks update-kubeconfig --name ${cluster-name} --region us-east-1
