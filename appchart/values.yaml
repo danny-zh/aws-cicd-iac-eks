@@ -62,3 +62,8 @@ configmap:
 db_service:
   name: db-service
   label: db-service
+
+### Variables for ingress.yml
+ingress:
+  name: app-ingress
+  classname: nginx
