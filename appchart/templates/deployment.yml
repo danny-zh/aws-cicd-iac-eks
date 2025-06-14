@@ -27,23 +27,23 @@ spec:
               bash scripts/prestart.sh
           envFrom:
           - configMapRef:
-              name: backend-configmap
+              name: {{ .Values.configmap.name }}
       imagePullSecrets:
-        - name: my-secret
+        - name: {{ .Values.secret.name }}
       containers:
       - name: {{ .Values.deployment.container.name }}
         image: "{{ .Values.deployment.account_id }}.dkr.ecr.us-east-1.amazonaws.com/{{ .Values.deployment.image.name }}:{{ .Values.deployment.image.tag }}"
         resources:
           limits:
-            memory: 500Mi
+            memory: {{ .Values.deployment.container.limits.memory }}
           requests:
-            cpu: 250m
-            memory: 500Mi
+            cpu: {{ .Values.deployment.container.limits.cpu }}
+            memory: {{ .Values.deployment.container.limits.memory }}
         ports:
         - containerPort: {{ .Values.deployment.container.port }}
         envFrom:
         - configMapRef:
-            name: backend-configmap
+            name: {{ .Values.configmap.name }}
         livenessProbe:
           httpGet:
             path: /api/v1/utils/health-check/

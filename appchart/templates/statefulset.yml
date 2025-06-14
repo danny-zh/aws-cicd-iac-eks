@@ -12,7 +12,7 @@ spec:
     name: {{ .Values.sts.container.name }}
   clusterIP: None
   selector:
-    app: db
+    app: {{ .Values.sts.pod.label }}
 ---
 # Statefulset definition
 apiVersion: apps/v1
@@ -25,14 +25,14 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: db # has to match .spec.template.metadata.labels
+      app: {{ .Values.sts.pod.label }} 
   serviceName: {{ .Values.db_service.name }}
   replicas: {{ .Values.sts.replicas }} # by default is 1
   minReadySeconds: 10 # by default is 0
   template:
     metadata:
       labels:
-        app: db # has to match .spec.selector.matchLabels
+        app: {{ .Values.sts.pod.label }}
     spec:
       terminationGracePeriodSeconds: 10
       containers:
@@ -52,17 +52,17 @@ spec:
           - name: POSTGRES_USER
             valueFrom:
               configMapKeyRef:
-                name: backend-configmap          
+                name: {{ .Values.configmap.name }}        
                 key: POSTGRES_USER
           - name: POSTGRES_PASSWORD
             valueFrom:
               configMapKeyRef:
-                name: backend-configmap          
+                name: {{ .Values.configmap.name }}         
                 key: POSTGRES_PASSWORD
           - name: POSTGRES_DB
             valueFrom:
               configMapKeyRef:
-                name: backend-configmap          
+                name: {{ .Values.configmap.name }}         
                 key: POSTGRES_DB
  
       

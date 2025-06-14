@@ -2,6 +2,11 @@
 namespace:
   name: app
 
+### Variables for secret.yml
+secret:
+  name: app-secret
+
+
 #### Variables for service.yaml
 service:
   name: app-svc
@@ -17,6 +22,9 @@ deployment:
   container:
     name: backend
     port: 8000
+    limits:
+      cpu: 250m
+      memory: 512Mi
   image:
     pullPolicy: IfNotPresent
     name: app/backend
@@ -37,7 +45,25 @@ sts:
     limits:
       cpu: 250m
       memory: 512Mi
+  pod:
+    label: db
 
+#### Variables for configmap.yaml
+configmap:
+  name: app-configmap
+  labels:
+    app: backend
+  data:
+    db_host: db-service
+    db_port: "5432"
+    db_name: app
+
+### Variables for db_service
 db_service:
   name: db-service
   label: db-service
+
+### Variables for ingress.yml
+ingress:
+  name: app-ingress
+  classname: nginx
