@@ -88,3 +88,23 @@ For more information about the components, refer to the README files in each dir
 - [Application Documentation](app/README.md)
 - [Helm Chart Documentation](appchart/README.md)
 - [Infrastructure Documentation](infra/README.md)
+
+## App Screnshots
+
+![image](https://github.com/user-attachments/assets/0f281268-9251-4180-9f87-8f073c96a8b9)
+
+![image](https://github.com/user-attachments/assets/f5b26916-4d2f-45e5-88ad-47b25d19cce2)
+
+## Infra Screnshots
+
+![image](https://github.com/user-attachments/assets/bcba5d1e-95fb-4325-9212-e0c968b243ea)
+
+![image](https://github.com/user-attachments/assets/80e25d56-efea-487e-94be-3ecde28c0fad)
+
+![image](https://github.com/user-attachments/assets/c8b98913-24ed-49c4-9842-9ff12f3ea9b1)
+
+![image](https://github.com/user-attachments/assets/78d83748-3dad-4993-89de-18ed7fa59a59)
+
+## Codepipeline screenshots
+
+
