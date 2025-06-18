@@ -34,17 +34,17 @@ deployment:
   pod:
     label: app-backend
   
-#### Variables for deployment.yaml
+#### Variables for sts.yaml
 sts:
   label: app-sts
   name: app-db
   replicas: 1
   container:
     name: db
-    port: 5432
+    port: "5432"
     limits:
       cpu: 250m
-      memory: 512Mi
+      memory: 250Mi
   pod:
     label: db
 
@@ -66,4 +66,4 @@ db_service:
 ### Variables for ingress.yml
 ingress:
   name: app-ingress
-  classname: nginx
+  classname: alb

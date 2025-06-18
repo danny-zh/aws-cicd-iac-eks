@@ -5,6 +5,14 @@ terraform {
       source  = "hashicorp/aws"
       version = ">=5.63.0"
     }
+    helm = {
+      source  = "hashicorp/helm"
+      version = ">= 2.17.0"
+    }
+    random = {
+      source  = "hashicorp/random"
+      version = ">= 3.6.1"
+    }
   }
 
   backend "s3" {
@@ -18,6 +26,4 @@ terraform {
 
 provider "random" {}
 
-provider "aws" {
-  region = "us-east-1"
-}
+

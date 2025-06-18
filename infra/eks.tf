@@ -3,7 +3,7 @@ module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "~> 20.0"
 
-  cluster_name                             = var.cluster_name
+  cluster_name                             = local.cluster_name
   cluster_version                          = var.cluster_version
   cluster_endpoint_public_access           = true
   enable_cluster_creator_admin_permissions = true
@@ -41,9 +41,9 @@ module "eks" {
       iam_role_name            = "${var.cluster_name}-ng-default"
       iam_role_use_name_prefix = false
 
-      min_size     = 1
-      max_size     = 2
-      desired_size = 2
+      min_size     = var.cluster_min_size
+      max_size     = var.cluster_max_size
+      desired_size = var.cluster_desired_size
 
       update_config = {
         max_unavailable_percentage = 50

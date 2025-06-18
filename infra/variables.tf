@@ -1,7 +1,13 @@
+variable "region" {
+  description = "AWS region"
+  type        = string
+  default     = "us-east-1"
+}
+
 variable "cluster_name" {
   description = "Name of the EKS cluster"
   type        = string
-  default     = "eks-cluster-demo"
+  default     = "dherrera-eks-cluster"
 }
 
 variable "cluster_version" {
@@ -47,42 +53,27 @@ variable "aws_instance_type" {
 
 }
 
-# Variables for LB controller
-
-# tflint-ignore: terraform_unused_declarations
-# variable "eks_cluster_id" {
-#   description = "EKS cluster name"
-#   type        = string
-# }
-
-# tflint-ignore: terraform_unused_declarations
-# variable "eks_cluster_version" {
-#   description = "EKS cluster version"
-#   type        = string
-# }
-
-
-# # # tflint-ignore: terraform_unused_declarations
-# variable "addon_context" {
-#   description = "Addon context that can be passed directly to blueprints addon modules"
-#   type        = any
-# }
-
-# tflint-ignore: terraform_unused_declarations
-# variable "tags" {
-#   description = "Tags to apply to AWS resources"
-#   type        = any
-# }
-
-# tflint-ignore: terraform_unused_declarations
-# variable "resources_precreated" {
-#   description = "Have expensive resources been created already"
-#   type        = bool
-# }
-
 variable "load_balancer_controller_chart_version" {
   description = "The chart version of aws-load-balancer-controller to use"
   type        = string
   # renovate-helm: depName=aws-load-balancer-controller
   default = "1.12.0"
+}
+
+variable "cluster_min_size" {
+  description = "The minimum size of the managed nodes EKS cluster"
+  type        = number
+  default     = 1
+}
+
+variable "cluster_max_size" {
+  description = "The maximum size of the managed nodes EKS cluster"
+  type        = number
+  default     = 2
+}
+
+variable "cluster_desired_size" {
+  description = "The desired size of the managed nodes EKS cluster"
+  type        = number
+  default     = 2
 }

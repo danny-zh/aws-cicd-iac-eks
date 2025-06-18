@@ -6,7 +6,8 @@ metadata:
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/healthcheck-path: /actuator/health/liveness
+    alb.ingress.kubernetes.io/healthcheck-path: "/api/v1/utils/health-check/"
+    alb.ingress.kubernetes.io/healthcheck-port: "8000"
 spec:
   ingressClassName: {{ .Values.ingress.classname }}
   rules:
