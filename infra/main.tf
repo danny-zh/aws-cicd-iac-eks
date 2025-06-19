@@ -26,3 +26,6 @@ resource "random_string" "id" {
 #     Environment = "Dev2"
 #   }
 # }
+
+
+#Add some test to trigget cicd
