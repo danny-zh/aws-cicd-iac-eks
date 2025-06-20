@@ -89,6 +89,10 @@ For more information about the components, refer to the README files in each dir
 - [Helm Chart Documentation](appchart/README.md)
 - [Infrastructure Documentation](infra/README.md)
 
+## Git Screnshots
+
+![image](https://github.com/user-attachments/assets/b008e47f-19f8-4910-997d-187eb6a65d7e)
+
 ## App Screnshots
 
 ![image](https://github.com/user-attachments/assets/0f281268-9251-4180-9f87-8f073c96a8b9)
@@ -105,6 +109,16 @@ For more information about the components, refer to the README files in each dir
 
 ![image](https://github.com/user-attachments/assets/78d83748-3dad-4993-89de-18ed7fa59a59)
 
+![image](https://github.com/user-attachments/assets/71b17186-d976-4a48-bfe0-4e33f67f95db)
+
+
 ## Codepipeline screenshots
+
+![image](https://github.com/user-attachments/assets/a1f01891-61ea-4951-8d23-a6333b05c877)
+
+![image](https://github.com/user-attachments/assets/81efc855-0023-48a4-b7c6-d726f65673cf)
+
+![image](https://github.com/user-attachments/assets/4f5dafa2-9951-47dd-a68a-197dfd3a8a95)
+
 
 
