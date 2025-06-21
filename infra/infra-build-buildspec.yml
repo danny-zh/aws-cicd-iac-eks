@@ -5,9 +5,6 @@ phases:
   build:
     commands:
       - cd infra
-      - echo "Getting eks token..."
-      - aws eks get-token --cluster-name $(aws eks list-clusters --query "clusters[0]")
-      - exit 1
       - echo "Initializing Terraform..."
       - terraform init -no-color
       - echo "Validating Terraform code..."
