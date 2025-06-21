@@ -24,6 +24,6 @@ phases:
       - echo "Image pushed to ECR"
 
 
-  artifacts:
-    files:
-      - appchart/*
+artifacts:
+  files:
+    - appchart/*
