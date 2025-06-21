@@ -23,3 +23,7 @@ phases:
       - docker push ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${IMAGE_NAME}:${TAG}
       - echo "Image pushed to ECR"
 
+
+  artifacts:
+    files:
+      - appchart/*
