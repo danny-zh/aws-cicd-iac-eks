@@ -44,3 +44,18 @@ resource "helm_release" "aws_lb_controller" {
     value = module.eks_blueprints_addons.aws_load_balancer_controller.iam_role_arn
   }
 }
+
+# Install local chart version
+resource "helm_release" "appchart" {
+  name       = "appchart"
+  chart      = "../appchart"
+  namespace  = "default"
+  wait       = true
+  lint       = true 
+  upgrade_install =  true
+  version = "0.1.0"
+  depends_on = [helm_release.aws_lb_controller]
+  values = [
+    file("../secret_data.yml")
+  ]
+}

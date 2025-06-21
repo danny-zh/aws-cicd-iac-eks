@@ -7,7 +7,7 @@
 # }
 
 output "eks_cluster_region" {
-  value = var.region
+  value       = var.region
   description = "The AWS region where the EKS cluster is deployed"
 }
 
