@@ -4,7 +4,6 @@ phases:
 
   build:
     commands:
-      - make eks-update
       - cd infra
       - echo "Initializing Terraform..."
       - terraform init -no-color
