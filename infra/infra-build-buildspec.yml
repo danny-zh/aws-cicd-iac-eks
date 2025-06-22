@@ -9,8 +9,7 @@ phases:
       - terraform init -no-color
       - echo "Validating Terraform code..."
       - terraform validate
-      - echo "Planning Terraform actions..."
-      - terraform plan -out=tfplan
+      - test \"$ACTION\" == "destroy" && (echo "Skipping terraform plan, action is to destroy") || (echo "Planning Terraform actions..." && terraform plan -out=tfplan)
 
   post_build:
     commands:
