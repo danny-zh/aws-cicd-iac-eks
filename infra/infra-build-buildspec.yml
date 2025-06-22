@@ -18,3 +18,8 @@ phases:
 artifacts:
   files:
     - infra/*
+
+cache:
+  paths:
+    - infra/.terraform/**/*
+    - infra/.terraform.lock.hcl
