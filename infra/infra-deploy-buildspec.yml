@@ -7,8 +7,7 @@ phases:
       - cd infra
       - echo "Initializing Terraform..."
       - terraform init -no-color
-      - echo "Planning Terraform actions..."
-      - terraform apply -auto-approve tfplan 
+      - test $ACTION == "destroy" && (echo "Action was to destroy" ) || (echo "Planning Terraform actions..." && terraform apply -auto-approve tfplan) 
 
   post_build:
     commands:
