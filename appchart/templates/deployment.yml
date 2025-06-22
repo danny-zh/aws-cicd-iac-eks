@@ -28,8 +28,7 @@ spec:
           envFrom:
           - configMapRef:
               name: {{ .Values.configmap.name }}
-      imagePullSecrets:
-        - name: {{ .Values.secret.name }}
+    
       containers:
       - name: {{ .Values.deployment.container.name }}
         image: "{{ .Values.deployment.account_id }}.dkr.ecr.us-east-1.amazonaws.com/{{ .Values.deployment.image.name }}:{{ .Values.deployment.image.tag }}"

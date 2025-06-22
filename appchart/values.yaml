@@ -33,6 +33,7 @@ deployment:
     app: backend
   pod:
     label: app-backend
+  account_id: "YOUR_ACCOUNT_ID"  # Replace with your actual AWS account ID
   
 #### Variables for sts.yaml
 sts:
@@ -62,6 +63,13 @@ configmap:
 db_service:
   name: db-service
   label: db-service
+
+
+### Credentials for db_cred
+db_cred:
+  postgres_db: app
+  postgres_user: admin
+  postgres_password: changethis
 
 ### Variables for ingress.yml
 ingress:
