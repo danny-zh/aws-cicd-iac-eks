@@ -1,0 +1,14 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo "Logging into Amazon ECR..." 
+      - aws ecr get-login-password --region ${REGION} | docker login --username AWS --password-stdin ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com
+      - echo "Logging succeded" 
+
+  build:
+    commands:
+      - echo "Installing k8s app..."
+      - helm lint appchart
+      - helm upgrade --install ${APP_NAME} apchart
