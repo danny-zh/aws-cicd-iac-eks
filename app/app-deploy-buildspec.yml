@@ -3,6 +3,8 @@ version: 0.2
 phases:
   pre_build:
     commands:
+      - echo "Updating kubeconfig for EKS cluster"
+      - aws eks update-kubeconfig --name $(aws eks list-clusters --query "clusters[0]" --output text) --region ${REGION} 
       - echo "Logging into Amazon ECR..." 
       - aws ecr get-login-password --region ${REGION} | docker login --username AWS --password-stdin ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com
       - echo "Logging succeded" 
