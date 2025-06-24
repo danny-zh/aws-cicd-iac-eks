@@ -22,7 +22,8 @@ eks-update:
 	@echo "Updating ~/.kube/config use eks cluster: ${cluster-name} in region: ${region}"
 	@aws eks update-kubeconfig --name ${cluster-name} --region ${region} 
 
-assume-role:
-	@echo "Assuming role for AWS CLI"
-	aws sts assume-role --role-arn arn:aws:iam::123456789012:role/YourRoleName --role-session-name YourSessionName
-	@export AWS_ACCESS_KEY_ID=$(shell echo $$(aws sts assume-role --role-arn arn:aws:iam::123456789012:role/YourRoleName --role-session-name YourSessionName | jq -r '.Credentials.AccessKeyId'))
+unassume-role:
+	@echo "Delete creds role for AWS CLI"
+	@unset AWS_ACCESS_KEY_ID
+	@unset AWS_SECRET_ACCESS_KEY
+	@unset AWS_SESSION_TOKEN
