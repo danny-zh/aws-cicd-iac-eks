@@ -13,4 +13,4 @@ phases:
     commands:
       - echo "Installing k8s app..."
       - helm lint appchart
-      - helm upgrade --install ${APP_NAME} apchart
+      - helm upgrade --install ${APP_NAME} appchart
