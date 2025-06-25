@@ -1,0 +1,13 @@
+version: 0.2
+
+phases:
+
+  build:
+    commands:
+      - cd app/backend
+      - echo "Starting services with docker compose"
+      - docker compose watch
+    
+
+
+
