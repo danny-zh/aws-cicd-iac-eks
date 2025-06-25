@@ -27,4 +27,5 @@ phases:
 artifacts:
   files:
     - app/app-deploy-buildspec.yml
+    - app/app-test-buildspec.yml
     - appchart/**/*
