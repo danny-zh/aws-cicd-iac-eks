@@ -2,12 +2,25 @@ version: 0.2
 
 phases:
 
+  pre_build:
+    commands:
+      - echo "Installing uv"
+      - curl -LsSf https://astral.sh/uv/install.sh | sh
+      - echo "Installing project dependencies"
+      - cd app/backend && uv sync
+      - echo "Activating virtualenv"
+      - source .venv/bin/activate
   build:
     commands:
-      - cd app/backend
       - echo "Starting services with docker compose"
-      - docker compose watch
-    
+      - docker compose up -d
+      - echo "Executing tests"
+      - source scripts/test.sh
+  
+artifacts:
+  files:
+    - app/backend/htmlcov/**/*
+  discard-paths: yes
 
 
 
