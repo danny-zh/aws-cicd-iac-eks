@@ -27,7 +27,7 @@ services:
       db:
         condition: service_healthy
         restart: true
-    command: sh app/scripts/prestart.sh
+    command: sh /app/scripts/prestart.sh
     env_file:
       - .env
     environment:
