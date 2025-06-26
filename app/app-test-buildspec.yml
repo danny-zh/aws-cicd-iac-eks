@@ -7,6 +7,7 @@ phases:
       - echo "Installing uv"
       - curl -LsSf https://astral.sh/uv/install.sh | sh
       - echo "Installing project dependencies"
+      - source $HOME/.local/bin/env
       - cd app/backend && uv sync
       - echo "Activating virtualenv"
       - source .venv/bin/activate
