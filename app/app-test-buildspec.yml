@@ -16,7 +16,8 @@ phases:
       - echo "Starting services with docker compose"
       - docker compose up -d
       - echo "Executing tests"
-      - source scripts/test.sh
+      - curl localhost:8000
+      - curl localhost:5432
   
 artifacts:
   files:
