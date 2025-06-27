@@ -18,8 +18,8 @@ phases:
       - echo "Executing tests"
       - until [[ $(netstat -tlpn | grep 8000) ]]; do echo "waiting service"; sleep 2; done 
       - netstat -tlpn
-      - curl localhost:8000
-      - curl localhost:5432
+      - curl $(hostname -I | cut -d " " -f1):8000
+      - curl $(hostname -I | cut -d " " -f1):5432
       - docker compose exec backend bash scripts/tests-start.sh
   
 artifacts:
