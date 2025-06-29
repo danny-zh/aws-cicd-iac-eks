@@ -7,21 +7,21 @@ phases:
       - aws ecr get-login-password --region ${REGION} | docker login --username AWS --password-stdin ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com
       - echo "Logging succeded" 
 
-  # build:
-  #   commands:
-  #     - cd app/backend
-  #     - echo "Building image in $(pwd && ls)"
-  #     - docker build -t ${IMAGE_NAME}:${TAG} .
-  #     - echo "Images built succesfully"
-  #     - echo "Tagging image succesfully"
-  #     - docker tag ${IMAGE_NAME}:${TAG} ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${IMAGE_NAME}:${TAG}
-  #     - echo "Image tagged succesfully"
+  build:
+    commands:
+      - cd app/backend
+      - echo "Building image in $(pwd && ls)"
+      - docker build -t ${IMAGE_NAME}:${TAG} .
+      - echo "Images built succesfully"
+      - echo "Tagging image succesfully"
+      - docker tag ${IMAGE_NAME}:${TAG} ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${IMAGE_NAME}:${TAG}
+      - echo "Image tagged succesfully"
     
-  # post_build:
-  #   commands:
-  #     - echo "Pushing image to ECR"
-  #     - docker push ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${IMAGE_NAME}:${TAG}
-  #     - echo "Image pushed to ECR"
+  post_build:
+    commands:
+      - echo "Pushing image to ECR"
+      - docker push ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${IMAGE_NAME}:${TAG}
+      - echo "Image pushed to ECR"
 
 
 artifacts:
