@@ -4,15 +4,19 @@ phases:
 
   pre_build:
     commands:
+      - echo "Now in dir $(pwd), contents $(ls)"
+      - cd app/backend 
+      - echo "Now in dir $(pwd), contents $(ls)"
       - echo "Installing uv"
       - curl -LsSf https://astral.sh/uv/install.sh | sh
-      - echo "Installing project dependencies"
       - source $HOME/.local/bin/env
-      - cd app/backend && uv sync
+      - echo "Installing project dependencies"
+      - uv sync
       - echo "Activating virtualenv"
       - source .venv/bin/activate
   build:
     commands:
+      - echo "Now in dir $(pwd), contents $(ls)"
       - echo "Starting services with docker compose"
       - docker compose up -d
       - echo "Checking service availability"
