@@ -19,7 +19,7 @@ phases:
       - cd ..
       - echo "Now in dir $(pwd), contents $(ls)"
       - echo "Starting services with docker compose"
-      - docker compose up -d
+      - docker compose up -d || docker logs app-db-1 && docker logs app-prestart-1 
       - echo "Checking service availability"
       - until [[ $(netstat -tlpn | grep 5432) ]]; do echo "waiting service"; sleep 2; done 
       - until [[ $(netstat -tlpn | grep 8000) ]]; do echo "waiting service"; sleep 2; done 
