@@ -16,6 +16,7 @@ phases:
       - source .venv/bin/activate
   build:
     commands:
+      - cd ..
       - echo "Now in dir $(pwd), contents $(ls)"
       - echo "Starting services with docker compose"
       - docker compose up -d

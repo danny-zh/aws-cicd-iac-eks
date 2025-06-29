@@ -20,7 +20,7 @@ services:
       - POSTGRES_DB=${POSTGRES_DB?Variable not set}
 
   prestart:
-    image: userforpython47/backend:1
+    image: ${DOCKER_IMAGE_BACKEND}:${TAG}
     build:
       context: ./backend
     depends_on:
@@ -42,7 +42,7 @@ services:
       - SMTP_USER=${SMTP_USER}
       - SMTP_PASSWORD=${SMTP_PASSWORD}
       - EMAILS_FROM_EMAIL=${EMAILS_FROM_EMAIL}
-      - POSTGRES_SERVER=db
+      - POSTGRES_SERVER=${POSTGRES_SERVER}
       - POSTGRES_PORT=${POSTGRES_PORT}
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_USER=${POSTGRES_USER?Variable not set}
@@ -50,7 +50,7 @@ services:
       - SENTRY_DSN=${SENTRY_DSN}
 
   backend:
-    image: userforpython47/backend:1
+    image: ${DOCKER_IMAGE_BACKEND}:${TAG}
     restart: always
     ports:
       - 8000:8000
@@ -74,7 +74,7 @@ services:
       - SMTP_USER=${SMTP_USER}
       - SMTP_PASSWORD=${SMTP_PASSWORD}
       - EMAILS_FROM_EMAIL=${EMAILS_FROM_EMAIL}
-      - POSTGRES_SERVER=db
+      - POSTGRES_SERVER=${POSTGRES_SERVER}
       - POSTGRES_PORT=${POSTGRES_PORT}
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_USER=${POSTGRES_USER?Variable not set}
