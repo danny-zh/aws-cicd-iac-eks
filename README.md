@@ -112,13 +112,21 @@ For more information about the components, refer to the README files in each dir
 ![image](https://github.com/user-attachments/assets/71b17186-d976-4a48-bfe0-4e33f67f95db)
 
 
-## Codepipeline screenshots
+## Codepipeline infra screenshots
 
 ![image](https://github.com/user-attachments/assets/a1f01891-61ea-4951-8d23-a6333b05c877)
 
 ![image](https://github.com/user-attachments/assets/81efc855-0023-48a4-b7c6-d726f65673cf)
 
 ![image](https://github.com/user-attachments/assets/4f5dafa2-9951-47dd-a68a-197dfd3a8a95)
+
+## Codepipeline app screenshots
+![image](https://github.com/user-attachments/assets/377c9861-203e-419e-9234-de9928c6281a)
+
+![image](https://github.com/user-attachments/assets/45241c1f-df4b-4361-819c-d56a14815fd2)
+
+![image](https://github.com/user-attachments/assets/12e3e036-b46f-4360-a6ec-9b4dbc0d2559)
+
 
 
 
