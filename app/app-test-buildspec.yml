@@ -15,11 +15,11 @@ phases:
     commands:
       - echo "Starting services with docker compose"
       - docker compose up -d
-      - echo "Executing tests"
+      - echo "Checking service availability"
+      - until [[ $(netstat -tlpn | grep 5432) ]]; do echo "waiting service"; sleep 2; done 
       - until [[ $(netstat -tlpn | grep 8000) ]]; do echo "waiting service"; sleep 2; done 
       - netstat -tlpn
-      - curl $(hostname -I | cut -d " " -f1):8000
-      - curl $(hostname -I | cut -d " " -f1):5432
+      - echo "Running tests"
       - docker compose exec backend bash scripts/tests-start.sh
   
 artifacts:
