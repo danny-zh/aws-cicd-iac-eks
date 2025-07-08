@@ -130,3 +130,5 @@ alembic upgrade head
 ## Deployment
 
 This application is designed to be deployed to Kubernetes using the Helm chart in the `appchart` directory.
+
+#Add this line to trigger codepipeline app pipeline
